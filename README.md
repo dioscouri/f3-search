@@ -1,2 +1,2 @@
-f3-pages
+f3-search
 ========
