@@ -15,17 +15,7 @@ class Routes extends \Dsc\Routes\Group
             'action' => 'index' 
         ) );
         
-        $this->add( '', 'POST', array(
-            'controller' => 'Search',
-            'action' => 'submit'
-        ) );
-        
-        $this->add( '/@keywords', 'GET', array(
-            'controller' => 'Search',
-            'action' => 'index'
-        ) );
-        
-        $this->add( '/@keywords/page/@page', 'GET', array(
+        $this->add( '/page/@page', 'GET', array(
             'controller' => 'Search',
             'action' => 'index'
         ) );
