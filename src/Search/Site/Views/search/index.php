@@ -34,6 +34,23 @@
                     
             <?php if (!empty($paginated->items)) { ?>
             
+                <div class="main-bottom">
+                    <div class="half text-left">
+                        <div class="page-counter pull-left">
+                            <div class="type-selector">
+                                <span class="pagination">
+                                    <?php echo (!empty($paginated->total_pages)) ? $paginated->getResultsCounter() : null; ?>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="half text-right">
+                        <?php if (!empty($paginated->total_pages) && $paginated->total_pages > 1) { ?>
+                            <?php echo $paginated->serve(); ?>
+                        <?php } ?>
+                    </div>
+                </div>            
+            
                 <?php foreach ($paginated->items as $position=>$model_item) { ?>
                     <?php if ($item = $model_item->toSearchItem()) { ?>
                         
