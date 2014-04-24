@@ -65,7 +65,10 @@
                         </div>
                         <div class="col-md-9">
                             <a href="<?php echo $item->url; ?>">
-                                <h3><?php echo $item->title ?></h3>
+                                <h3><?php echo $item->title; ?></h3>
+                                <?php if (!empty($item->subtitle)) { ?>
+                                <h4><?php echo $item->subtitle; ?></h4>
+                                <?php } ?>
                                 <div><?php echo $item->summary; ?></div>
                             </a>
                         </div>
