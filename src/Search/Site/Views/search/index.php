@@ -29,10 +29,14 @@
                     </form>
                 </div>
             </div>
-            
-            <?php // TODO Enable filter.type-specific overrides.  Products one layout, blog posts another, etc ?>
                     
             <?php if (!empty($paginated->items)) { ?>
+            
+                <?php // This enables filter.type-specific overrides.  Products one layout, blog posts another, etc ?>
+                <?php if ($view_file = $this->findViewFile( 'Search/Site/Views::search/' . $current_source['id'] . '.php' )) {
+                    $this->paginated = $paginated; 
+                	echo $this->renderView( 'Search/Site/Views::search/' . $current_source['id'] . '.php' );
+                } else { ?>            
             
                 <div class="main-bottom">
                     <div class="half text-left">
@@ -94,6 +98,7 @@
                         <?php } ?>
                     </div>
                 </div>
+                <?php } ?>
             
             <?php } else { ?>
                 
