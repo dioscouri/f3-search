@@ -8,7 +8,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <?php foreach (\Search\Factory::sources() as $source) { ?>
                 <li class="<?php if ($current_source['id'] == $source['id']) { echo ' active'; } ?>">
-                    <a href="./search?q=<?php echo $q; ?>&filter[search]=<?php echo $source['id']; ?>"><?php echo $source['title']; ?></a>
+                    <a href="/search?q=<?php echo $q; ?>&filter[search]=<?php echo $source['id']; ?>"><?php echo $source['title']; ?></a>
                 </li>
                 <?php } ?>
             </ul>
