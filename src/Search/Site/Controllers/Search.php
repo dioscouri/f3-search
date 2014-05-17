@@ -42,7 +42,9 @@ class Search extends \Dsc\Controller
         \Base::instance()->set('paginated', $paginated );
         
         \Base::instance()->set('q', $q );
-         
+
+        $this->app->set('meta.title', trim( 'Search ' . $source_exists['title'] ) );
+        
         $view = \Dsc\System::instance()->get('theme');
         echo $view->renderTheme('Search/Site/Views::search/index.php');
     
