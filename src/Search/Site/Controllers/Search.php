@@ -35,7 +35,7 @@ class Search extends \Dsc\Controller
         
         // Use the source to make the query
         $source = new $class;
-        $state = $source->populateState()->setState('filter.keyword', $q)->getState();
+        $state = $source->populateState()->setState('search', true)->setState('filter.keyword', $q)->getState();
         \Base::instance()->set('state', $state );
         
         $paginated = $source->paginate();
