@@ -47,12 +47,15 @@ class Search extends \Dsc\Controller
         $settings = \Admin\Models\Settings::fetch();
         if( class_exists( '\KM' ) && $settings->enabledIntegration('kissmetrics')){
         	\KM::init( $settings->{'integration.kissmetrics.key'} );
-        
+        	$data = array("Search Terms" => $q);
+        	 
         	$identity = \Dsc\System::instance()->get('auth')->getIdentity();
         	if( !empty( $identity->email ) ) {
         		\KM::identify( $identity->email );
         	}
-        	\KM::record("Site Search", array( "Search Terms" => $q ) );
+        	$data['Page'] = (int)\Dsc\Pagination::findCurrentPage();
+        	$data['Source'] = $current_source;
+        	\KM::record("Site Search", $data );
         }
 
         $this->app->set('meta.title', trim( 'Search ' . $source_exists['title'] ) );
