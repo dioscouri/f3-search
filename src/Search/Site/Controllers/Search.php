@@ -43,21 +43,6 @@ class Search extends \Dsc\Controller
         
         \Base::instance()->set('q', $q );
 
-        // report term to kickmetrics, if integration  required
-        $settings = \Admin\Models\Settings::fetch();
-        if( class_exists( '\KM' ) && $settings->enabledIntegration('kissmetrics')){
-        	\KM::init( $settings->{'integration.kissmetrics.key'} );
-        	$data = array("Search Terms" => $q);
-        	 
-        	$identity = \Dsc\System::instance()->get('auth')->getIdentity();
-        	if( !empty( $identity->email ) ) {
-        		\KM::identify( $identity->email );
-        	}
-        	$data['Page'] = (int)\Dsc\Pagination::findCurrentPage();
-        	$data['Source'] = $current_source;
-        	\KM::record("Site Search", $data );
-        }
-
         $this->app->set('meta.title', trim( 'Search ' . $source_exists['title'] ) );
         
         $view = \Dsc\System::instance()->get('theme');
