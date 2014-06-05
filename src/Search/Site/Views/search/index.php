@@ -22,7 +22,10 @@ _kmq.push(['record', 'Site Search', <?php echo json_encode( $data ); ?>]);
             <ul class="nav nav-pills nav-stacked">
                 <?php foreach (\Search\Factory::sources() as $source) { ?>
                 <li class="<?php if ($current_source['id'] == $source['id']) { echo ' active'; } ?>">
-                    <a href="./search?q=<?php echo $q; ?>&filter[search]=<?php echo $source['id']; ?>"><?php echo $source['title']; ?></a>
+                    <a href="./search?q=<?php echo $q; ?>&filter[search]=<?php echo $source['id']; ?>">
+                        <span class="badge pull-right"><?php echo \Search\Models\Source::count( $source, $q ); ?></span>
+                        <?php echo $source['title']; ?>
+                    </a>
                 </li>
                 <?php } ?>
             </ul>
@@ -87,7 +90,7 @@ _kmq.push(['record', 'Site Search', <?php echo json_encode( $data ); ?>]);
                                 <?php if (!empty($item->subtitle)) { ?>
                                 <h4><?php echo $item->subtitle; ?></h4>
                                 <?php } ?>
-                                <div><?php echo $item->summary; ?></div>
+                                <div class="summary-wrapper"><?php echo $item->summary; ?></div>
                             </a>
                         </div>
         
@@ -122,3 +125,14 @@ _kmq.push(['record', 'Site Search', <?php echo json_encode( $data ); ?>]);
         </div>
     </div>
 </div>
+
+<script>
+jQuery(document).ready(function(){
+	jQuery('.summary-wrapper').find('img').each(function(){
+		var img = jQuery(this);
+		if (!img.hasClass('img-responsive')) {
+			img.addClass('img-responsive');
+	    }
+	});
+});
+</script>
