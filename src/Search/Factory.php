@@ -1,7 +1,7 @@
 <?php 
 namespace Search;
 
-class Factory extends \Prefab 
+class Factory extends \Dsc\Singleton 
 {
     /**
      * 

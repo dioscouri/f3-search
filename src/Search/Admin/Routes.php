@@ -6,11 +6,21 @@ class Routes extends \Dsc\Routes\Group
     public function initialize()
     {
         $this->setDefaults( array(
-            'namespace' => '\Searches\Admin\Controllers',
-            'url_prefix' => '/admin/searches' 
+            'namespace' => '\Search\Admin\Controllers',
+            'url_prefix' => '/admin' 
         ) );
         
-        $this->addSettingsRoutes();
-        $this->addCrudGroup( 'Searches', 'Search' );
+        $this->add( '/search', 'GET', array(
+            'controller' => 'Search',
+            'action' => 'index'
+        ) );
+        
+        $this->add( '/search/page/@page', 'GET', array(
+            'controller' => 'Search',
+            'action' => 'index'
+        ) );        
+        
+        //$this->addSettingsRoutes();
+        //$this->addCrudGroup( 'Searches', 'Search' ); // the log of searches made on the site
     }
 }
