@@ -80,6 +80,9 @@
                             <?php if (!empty($item->subtitle)) { ?>
                             <h4><?php echo $item->subtitle; ?></h4>
                             <?php } ?>
+                            <?php if (!empty($item->datetime)) { ?>
+                            <h5><?php echo $item->datetime; ?></h5>
+                            <?php } ?>                            
                             <div class="summary-wrapper"><?php echo $item->summary; ?></div>                        
                         </div>        
                     </div>
