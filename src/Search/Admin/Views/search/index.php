@@ -69,8 +69,12 @@
                         <div class="col-xs-3 col-sm-3 col-md-2">
                             <?php if ($item->image) { ?>
                             <a href="<?php echo $item->url; ?>">
-                                <img src="<?php echo $item->image; ?>" class="img-responsive" />
+                                <img src="<?php echo $item->image; ?>" class="img-responsive" style="width: 100%;" />
                             </a>
+                            <?php } else { ?>
+                            <a href="<?php echo $item->url; ?>">
+                                <img src="./AdminTheme/img/placeholder.png" class="img-responsive" style="width: 100%;" />
+                            </a>                                
                             <?php } ?>
                         </div>
                         <div class="col-xs-9 col-sm-9 col-md-10">
