@@ -8,10 +8,8 @@ class Factory extends \Dsc\Singleton
      * @return string
      */
     public static function defaultSource()
-    {
-        $default = 'shop.products'; // TODO Get this from the config
-        
-        return $default;
+    {        
+        return (new \Search\Models\Settings)->defaultSource();
     }
     
     /**

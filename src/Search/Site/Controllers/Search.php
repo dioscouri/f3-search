@@ -7,8 +7,9 @@ class Search extends \Dsc\Controller
     {	
     	
     	$filter =  $this->input->get('filter','','array');
-    	$settings = \Search\Models\Settings::fetch();
-    	if(empty($filter) && $settings->{'source'} == 'all'){
+    	$source =  (new \Search\Models\Settings)->defaultSource();
+    
+    	if(empty($filter) && $source == 'all'){
     		$this->allSearch();
     	} else {
     		$this->filteredSearch();
