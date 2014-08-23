@@ -18,9 +18,14 @@ class Search extends \Dsc\Controller
             ));
                         
         }
-        catch (\Exception $e) {
-            $this->app->error(404, 'Search Type Not Found');
-            return;        	
+        catch (\Exception $e) 
+        {
+            \Dsc\System::addMessage($e->getMessage(), 'error');
+            $current_source = array(
+                'id' => 'invalid',
+                'title' => ''
+            );
+            $paginated = null;
         }
         
         $this->app->set('current_source', $current_source );
