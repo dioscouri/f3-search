@@ -9,7 +9,17 @@ class Factory extends \Dsc\Singleton
      */
     public static function defaultSource()
     {
-        $default = 'shop.products'; // TODO Get this from the config
+        $global_app_name = \Base::instance()->get('APP_NAME');
+        switch($global_app_name) 
+        {
+            case "admin":
+                $default = 'users'; // TODO Get this from the config
+                break;
+            default:
+                $default = 'pages'; // TODO Get this from the config
+                break;
+        }
+        
         
         return $default;
     }
