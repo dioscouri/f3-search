@@ -11,7 +11,7 @@ class Search extends \Dsc\Controller
             $current_source = \Search\Models\Source::current();
             $paginated = \Search\Models\Source::paginate( $current_source, $q );
             
-            \Shop\Models\Activities::track('Performed Search', array(
+            \Dsc\Activities::track('Performed Search', array(
                 'Search Term' => $q,
                 'Search Source' => $current_source['title'],
                 'page_number' => $paginated->current_page
