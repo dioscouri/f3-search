@@ -1,17 +1,3 @@
-<?php 
-// report term to kickmetrics, if integration  required
-$settings = \Admin\Models\Settings::fetch();
-if( $settings->enabledIntegration('kissmetrics')){
-	$data = array("Search Terms" => $q);
-	$data['Page'] = (int)\Dsc\Pagination::findCurrentPage();
-	$data['Source'] = $current_source['id'];
-?>
-<script type="text/javascript">
-_kmq.push(['record', 'Site Search', <?php echo json_encode( $data ); ?>]);
-</script>
-
-<?php } ?>
-
 <div class="container">
     <div id="content-header">
         <h1>Search</h1>
