@@ -14,7 +14,8 @@ class Search extends \Dsc\Controller
             \Dsc\Activities::track('Performed Search', array(
                 'Search Term' => $q,
                 'Search Source' => $current_source['title'],
-                'page_number' => $paginated->current_page
+                'page_number' => $paginated->current_page,
+                'app' => 'search'
             ));
                         
         }
