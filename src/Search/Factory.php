@@ -9,14 +9,16 @@ class Factory extends \Dsc\Singleton
      */
     public static function defaultSource()
     {
+        $settings = \Search\Models\Settings::fetch();
+        
         $global_app_name = \Base::instance()->get('APP_NAME');
         switch($global_app_name) 
         {
             case "admin":
-                $default = 'users'; // TODO Get this from the config
+                $default = $settings->default_admin_type;
                 break;
             default:
-                $default = 'pages'; // TODO Get this from the config
+                $default = $settings->default_site_type;
                 break;
         }
         
