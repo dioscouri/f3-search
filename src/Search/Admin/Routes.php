@@ -29,6 +29,12 @@ class Routes extends \Dsc\Routes\Group
             'controller' => 'Settings',
             'action' => 'save'
         ) );
+        
+        $this->add( '/search/history', 'GET|POST', array(
+        		'controller' => 'History',
+        		'action' => 'index'
+        ) );
+       
 
         //$this->addCrudGroup( 'Searches', 'Search' ); // the log of searches made on the site
     }

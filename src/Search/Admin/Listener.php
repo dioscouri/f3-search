@@ -21,7 +21,13 @@ class Listener extends \Dsc\Singleton
                 'base' => '/admin/search'
             ));
             
+         
             $children = array(
+            	array(
+            		'title' => 'History',
+            		'route' => './admin/search/history',
+            		'icon' => 'fa fa-history'
+            	),
                 array(
                     'title' => 'Settings',
                     'route' => './admin/search/settings',
