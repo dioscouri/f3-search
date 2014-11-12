@@ -64,6 +64,7 @@
         
             <?php foreach ($paginated->items as $position=>$model_item) { ?>
                 <?php if ($item = $model_item->toAdminSearchItem()) { ?>
+                <pre><?php var_dump($item);?></pre>
                 <div class="list-group-item">    
                     <div class="row">    
                         <div class="col-xs-3 col-sm-3 col-md-2">

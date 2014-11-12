@@ -13,4 +13,5 @@ class Settings extends \Admin\Controllers\BaseAuth
         $model = new \Search\Models\Settings;
         return $model;
     }
+
 }

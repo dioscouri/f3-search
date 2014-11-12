@@ -8,4 +8,6 @@ class Settings extends \Dsc\Mongo\Collections\Settings
     public $default_site_type = "pages";
     
     public $default_admin_type = "users";
+    
+  
 }

@@ -8,7 +8,8 @@ class Factory extends \Dsc\Singleton
      * @return string
      */
     public static function defaultSource()
-    {
+    {	
+    	
         $settings = \Search\Models\Settings::fetch();
         
         $global_app_name = \Base::instance()->get('APP_NAME');
@@ -24,6 +25,7 @@ class Factory extends \Dsc\Singleton
         
         
         return $default;
+    
     }
     
     /**
