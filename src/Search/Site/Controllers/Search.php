@@ -30,7 +30,7 @@ class Search extends \Dsc\Controller {
 		
 		try {
 			
-			$q = $this->input->get ( 'q', null, 'default' );
+			$q = trim($this->input->get ( 'q', null, 'default' ));
 			$sources = \Search\Factory::sources ();
 			
 			$results = array ();
@@ -72,7 +72,7 @@ class Search extends \Dsc\Controller {
 	* 
 	*/
 	protected function filteredSearch() {
-		$q = $this->input->get ( 'q', null, 'default' );
+		$q = trim($this->input->get ( 'q', null, 'default' ));
 		
 		try {
 			
