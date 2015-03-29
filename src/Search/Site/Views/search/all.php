@@ -6,12 +6,14 @@
     <div class="row">
         <aside class="col-sm-2 col-md-2">
             <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="./search?q=<?php echo $q; ?>">
+                <li class="active">
+                    <a href="./search?q=<?php echo $q; ?>">
                         <span class="badge pull-right"><?php echo count($results); ?></span>
                         All
-                    </a></li>
+                    </a>
+                </li>
                 <?php foreach (\Search\Factory::sources() as $source) { ?>
-                <li  ">
+                <li>
                     <a href="./search?q=<?php echo $q; ?>&filter[search]=<?php echo $source['id']; ?>">
                         <span class="badge pull-right"><?php echo \Search\Models\Source::count( $source, $q ); ?></span>
                         <?php echo $source['title']; ?>

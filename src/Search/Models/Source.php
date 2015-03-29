@@ -64,6 +64,10 @@ class Source extends \Dsc\Models
      */
     public static function count( $source, $q )
     {
+        if (empty($q)) {
+            return 0;
+        }
+        
         $source = new $source['class'];
         
         $source = $source->setState('is.search', true)->populateState()->setState('filter.keyword', $q);

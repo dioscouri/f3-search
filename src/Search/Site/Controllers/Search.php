@@ -27,39 +27,35 @@ class Search extends \Dsc\Controller
      */
     protected function allSearch()
     {
-        $q = $this->input->get('q', null, 'default');
+        $results = array();
+        $q = trim($this->input->get('q', null, 'default'));
         
         try
         {
-            
-            $q = trim($this->input->get('q', null, 'default'));
-            $sources = \Search\Factory::sources();
-            
-            $results = array();
-            foreach ($sources as $key => $source)
+            if (!empty($q)) 
             {
-                $paginated = \Search\Models\Source::paginate($source, $q);
-                if (!empty($paginated->items))
+                $sources = \Search\Factory::sources();
+                foreach ($sources as $key => $source)
                 {
-                    $results[$source['title']] = array_slice($paginated->items, 0, 2);
+                    $paginated = \Search\Models\Source::paginate($source, $q);
+                    if (!empty($paginated->items))
+                    {
+                        $results[$source['title']] = array_slice($paginated->items, 0, 2);
+                    }
                 }
+                
+                \Dsc\Activities::track('Performed Search', array(
+                    'Search Term' => $q,
+                    'Search Source' => 'All',
+                    'page_number' => '1',
+                    'app' => 'search'
+                ));                
             }
-            
-            \Dsc\Activities::track('Performed Search', array(
-                'Search Term' => $q,
-                'Search Source' => 'All',
-                'page_number' => '1',
-                'app' => 'search'
-            ));
+
         }
         catch (\Exception $e)
         {
             \Dsc\System::addMessage($e->getMessage(), 'error');
-            $current_source = array(
-                'id' => 'invalid',
-                'title' => ''
-            );
-            $paginated = null;
         }
         
         $this->app->set('current_source', 'all');
@@ -76,29 +72,32 @@ class Search extends \Dsc\Controller
      */
     protected function filteredSearch()
     {
+        $current_source = array(
+            'id' => 'invalid',
+            'title' => ''
+        );
+        $paginated = null;
+                
         $q = trim($this->input->get('q', null, 'default'));
         
         try
         {
-            
-            $current_source = \Search\Models\Source::current();
-            $paginated = \Search\Models\Source::paginate($current_source, $q);
-            
-            \Dsc\Activities::track('Performed Search', array(
-                'Search Term' => $q,
-                'Search Source' => $current_source['title'],
-                'page_number' => $paginated->current_page,
-                'app' => 'search'
-            ));
+            if (!empty($q)) 
+            {
+                $current_source = \Search\Models\Source::current();
+                $paginated = \Search\Models\Source::paginate($current_source, $q);
+                
+                \Dsc\Activities::track('Performed Search', array(
+                    'Search Term' => $q,
+                    'Search Source' => $current_source['title'],
+                    'page_number' => $paginated->current_page,
+                    'app' => 'search'
+                ));
+            }
         }
         catch (\Exception $e)
         {
             \Dsc\System::addMessage($e->getMessage(), 'error');
-            $current_source = array(
-                'id' => 'invalid',
-                'title' => ''
-            );
-            $paginated = null;
         }
         
         $this->app->set('current_source', $current_source);
