@@ -41,17 +41,13 @@
                 	echo $this->renderView( 'Search/Site/Views::search/' . $current_source['id'] . '.php' );
                 } else { ?>            
             
-                <div class="main-bottom">
-                    <div class="half text-left">
-                        <div class="page-counter pull-left">
-                            <div class="type-selector">
-                                <span class="pagination">
-                                    <?php echo (!empty($paginated->total_pages)) ? $paginated->getResultsCounter() : null; ?>
-                                </span>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <span class="pagination">
+                            <?php echo (!empty($paginated->total_pages)) ? $paginated->getResultsCounter() : null; ?>
+                        </span>
                     </div>
-                    <div class="half text-right">
+                    <div class="col-sm-6 text-right">
                         <?php if (!empty($paginated->total_pages) && $paginated->total_pages > 1) { ?>
                             <?php echo $paginated->serve(); ?>
                         <?php } ?>
@@ -87,15 +83,13 @@
                     <?php }?>
                 <?php } ?>
                 
-                <div class="main-bottom">
-                    <div class="half text-left">
-                        <div class="page-counter pull-left">
-                            <span class="pagination">
-                                <?php echo (!empty($paginated->total_pages)) ? $paginated->getResultsCounter() : null; ?>
-                            </span>             
-                        </div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <span class="pagination">
+                            <?php echo (!empty($paginated->total_pages)) ? $paginated->getResultsCounter() : null; ?>
+                        </span>
                     </div>
-                    <div class="half text-right">
+                    <div class="col-sm-6 text-right">
                         <?php if (!empty($paginated->total_pages) && $paginated->total_pages > 1) { ?>
                             <?php echo $paginated->serve(); ?>
                         <?php } ?>
