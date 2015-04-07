@@ -59,6 +59,30 @@ class Factory extends \Dsc\Singleton
     }
     
     /**
+     * UnRegister a source with the system.
+     * Normal usage is within a Listener or a bootstrap file
+     *
+     * @param unknown $name
+     */
+    public static function unregisterSource( $id )
+    {
+        $sources = \Base::instance()->get('dsc.search.sources');
+        if (empty($sources) || !is_array($sources))
+        {
+            $sources = array();
+        }
+    
+        if (array_key_exists($id, $sources))
+        {
+            unset($sources[$id]);
+        }
+    
+        \Base::instance()->set('dsc.search.sources', $sources);
+    
+        return $sources;
+    }
+    
+    /**
      * Gets the sources registered with the system
      * 
      * @return unknown
