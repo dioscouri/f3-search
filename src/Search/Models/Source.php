@@ -50,7 +50,7 @@ class Source extends \Dsc\Models
     public static function paginate( $source, $q )
     {
         $source = new $source['class'];
-        $paginated = $source->setState('is.search', true)->populateState()->setState('filter.keyword', $q)->paginate();
+        $paginated = $source->setState('is.search', true)->populateState()->setState('filter.type', true)->setState('filter.keyword', $q)->paginate();
         
         return $paginated;
     }
