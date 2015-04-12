@@ -70,7 +70,7 @@ class Source extends \Dsc\Models
         
         $source = new $source['class'];
         
-        $source = $source->setState('is.search', true)->populateState()->setState('filter.keyword', $q);
+        $source = $source->setState('is.search', true)->setState('filter.type', true)->populateState()->setState('filter.keyword', $q);
         $total = $source->collection()->count( $source->conditions() );
     
         return $total;

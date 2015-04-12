@@ -20,28 +20,45 @@ class Search extends \Admin\Controllers\BaseAuth
     protected function allSearch() {
     	$q = $this->input->get( 'q', null, 'default' );
     	$sources = \Search\Factory::sources();
-    	 
+
+    	$count = 0;
+    	$counts = array();
     	$results = array();
-    	foreach($sources as $key => $source) {
+    	foreach($sources as $key => $source) 
+    	{
     		$paginated = \Search\Models\Source::paginate( $source, $q );
-    		if(!empty($paginated->items)) {
+    		if (!empty($paginated->items)) 
+    		{
     			$results[$source['title']] = array_slice($paginated->items,0,2);
     		}
+    		$counts[$source['title']] = \Search\Models\Source::count( $source, $q );
+    		$count = $count + $counts[$source['title']];
     	}
     	 
     	$this->app->set('current_source', 'all' );
     	$this->app->set('results', $results );
+    	$this->app->set('counts', $counts );
+    	$this->app->set('count', $count );
     	$this->app->set('q', $q );
+    	
+    	$this->app->set('meta.title', trim( 'Search All' ) );
+    	
     	echo $this->theme->render('Search/Admin/Views::search/all.php');
     	 
     }
     
     protected function filteredSearch() {
     	$q = $this->input->get( 'q', null, 'default' );
-    	 
+    	
     	try {
     		$current_source = \Search\Models\Source::current();
     		$paginated = \Search\Models\Source::paginate( $current_source, $q );
+    		$count = 0;
+    		foreach(\Search\Factory::sources() as $key => $source)
+    		{
+    		    $count = $count + \Search\Models\Source::count( $source, $q );
+    		}
+    		
     	}
     	catch (\Exception $e) {
     		$this->app->error(404, 'Search Type Not Found');
@@ -50,6 +67,7 @@ class Search extends \Admin\Controllers\BaseAuth
     	 
     	$this->app->set('current_source', $current_source );
     	$this->app->set('paginated', $paginated );
+    	$this->app->set('count', $count );
     	$this->app->set('q', $q );
     	 
     	$this->app->set('meta.title', trim( 'Search ' . $current_source['title'] ) );

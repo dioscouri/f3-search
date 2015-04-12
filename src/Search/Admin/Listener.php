@@ -23,6 +23,11 @@ class Listener extends \Dsc\Singleton
             
          
             $children = array(
+                array(
+                    'title' => 'Results',
+                    'route' => './admin/search',
+                    'icon' => 'fa fa-search'
+                ),                
             	array(
             		'title' => 'History',
             		'route' => './admin/search/history',

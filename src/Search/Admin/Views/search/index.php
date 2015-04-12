@@ -10,6 +10,12 @@
 <div class="row">
     <div class="col-sm-2 col-md-2">
         <ul class="nav nav-pills nav-stacked">
+            <li>
+                <a href="./admin/search?q=<?php echo $q; ?>">
+                    Global Search
+                    <span class="badge pull-right"><?php echo (int) $count; ?></span>
+                </a>
+            </li>        
             <?php foreach (\Search\Factory::sources() as $source) { ?>
             <li class="<?php if ($current_source['id'] == $source['id']) { echo ' active'; } ?>">
                 <a href="./admin/search?q=<?php echo $q; ?>&filter[search]=<?php echo $source['id']; ?>">
@@ -24,10 +30,11 @@
 
         <div class="row">
             <div class="col-md-12">
-                <form method="get" action="./admin/search?filter[search]=<?php echo $current_source['id']; ?>" role="search">
+                <form method="get" action="./admin/search" role="search">
                     <div class="form-group">
                     <div class="input-group">
                         <input name="q" type="text" class="form-control" value="<?php echo $q; ?>">
+                        <input name="filter[search]" type="hidden" class="form-control" value="<?php echo $current_source['id']; ?>">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit" tabindex="3">Search</button>
                         </span>

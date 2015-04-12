@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
 		 <?php
-			$options[] = array('text' => 'All', 'value' => 'all');
+			$options[] = array('text' => 'Global Search', 'value' => 'all');
             $sources = \Search\Factory::sources(); 
 			foreach($sources as $source) {
 					$options[] = array('text' => $source['title'], 'value' =>(string) $source['id']);
